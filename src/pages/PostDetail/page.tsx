@@ -137,7 +137,7 @@ const PostDetail = () => {
       {commentData?.length !== 0
         ? <TableContainer>
             <Table>
-              <TableHead>
+              <TableHead className="t_hd">
                 <TableRow>
                   <TableCell width={150}> İçerik ID </TableCell>
                   <TableCell>Yorum</TableCell>

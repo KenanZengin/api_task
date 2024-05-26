@@ -1,0 +1,155 @@
+.login_form{
+    width: 100%;
+    background-color: #fff;
+    padding: 50px 0;
+    &_wrapper{
+        background-color: inherit;
+        width: 100%;
+        max-width: 500px;
+        margin: auto;
+        padding: 20px;
+        border: 2px solid #DBEBD9;
+        border-radius: 12px;
+        text-align: center;
+        h2{
+            color: #182A16;
+        }
+        form{
+            margin: 25px 0;
+            display: flex;
+            gap: 25px;
+            flex-direction: column;
+            label{
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 7.5px;
+                .inp_w{
+                    width: 100%;
+                    .p_inp_wrpp{
+                        position: relative;
+                        span{
+                            display: inline-block;
+                            height: 25px;
+                            width: 25px;
+                            color: #a6b0c3; 
+                            position: absolute;
+                            right: 10px;
+                            top: calc(50% - 12.5px);
+                            cursor: pointer;
+                        }
+                    }
+                    input{
+                        padding:0 18px;
+                        height: 56px;
+                        width: 100%;
+                       
+                        border-radius: 12px;
+                        font-size: .9375rem;
+                        line-height: 1.5rem;    
+                        &:hover{
+                            border-color: rgb(166, 176, 195);
+                        }
+                        &:focus{
+                            border-color:#54934D;
+                            box-shadow: #E4F0E3 0px 0px 0px 4px;
+                        }
+                        &::placeholder{
+                            color: #58667E;
+                            font-size: .875rem;
+                        }
+                    }
+                    input[autocomplete="on"] {
+                        background-color: #fff;
+                    }
+                   
+                   
+                }
+                .l-sp{
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    span{
+                        display: inline-block;
+                        font-weight: 700;
+                        font-size: .75rem;
+                    }
+                    .l-nm{
+                        color: rgb(13, 20, 33);
+                    }
+                    .l-frgtpss{
+                        color: #808a9d;
+                    }
+                }
+
+                .sccs-inp{
+                    background-color: #fff;
+                    border: 1px solid rgb(207, 214, 228);
+                }
+                .err-inp{
+                    border: 1px solid #ea3943 !important;
+                    box-shadow: 0 0 0 4px rgba(234, 57, 67, .2) !important;
+                }
+                .frm-err-msg{
+                    margin-top: 5px;
+                    text-align: start;
+                    color: #ea3943;
+                    font-size: .875rem;
+                }
+            }
+            button{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                padding: 14px 0;
+                max-height: 43px;
+                border-radius: 12px;
+                text-align: center;
+                color: #fff;
+                font-weight: bolder;
+                cursor: pointer;
+            }
+            .form_ok{
+                background-color: #60A759;
+            }
+            .form_err{
+                background-color: #A5CDA1;
+            }
+        }
+        .or{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #808a9d;
+            &::after,&::before{
+                content: "";
+                display: block;
+                width: 50%;
+                height: 2px;
+                background-color: #E4F0E3;
+            }
+        }
+        .other_op{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 10px 0;
+            margin: 20px 0;
+            color: rgb(13, 20, 33);
+            font-size: .9375rem;
+            border: 1px solid rgb(207, 214, 228);
+            border-radius: 12px;
+        }
+        .dnt_accnt{
+            color: #808a9d;
+            font-size: .875rem;
+            span{
+                color: #54934D;
+                text-decoration: underline;
+            }
+        }
+    }
+}

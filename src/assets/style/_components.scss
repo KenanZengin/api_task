@@ -1,0 +1,116 @@
+.card{
+    height: 100%;
+    &_content{
+    border: 1px solid;
+    border-radius: 4px;
+    height: 100%;
+    .post_info{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        .post_membership{
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: bold;
+            font-size: .875rem;
+            color: #182A16;
+            span{
+                width: 22px;
+                height: 22px;
+            }
+        }
+        .post_content{
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            p{
+                font-size: .875rem;
+                font-weight: 600;
+
+            }
+        }
+    }
+    }
+}
+.card_content[user-statu="silver"] {
+    border-color: $silver;
+    background: rgba($silver, .1);
+    .post_membership{
+        span{
+            background-color: $silver;
+        }
+    }
+}
+.card_content[user-statu="gold"] {
+    border-color: $gold;
+    background: rgba($gold, .075);
+    .post_membership{
+        span{
+            background-color: $gold;
+        }
+    }
+}
+.card_content[user-statu="platinum"] {
+    border-color: #00B8D9;
+    background: rgba(#00B8D9, .075);
+
+    .post_membership{
+        span{
+            background-color: #00B8D9;
+        }
+    }
+}
+.card_content[user-statu="diamond"] {
+    border-color: $diamond;
+    background: rgba($diamond, .075);
+    .post_membership{
+        span{
+            background-color: $diamond;
+        }
+    }
+}
+
+
+.menu_item,.card_content{
+    span{
+        display: inline-block;
+        border-radius: 50%;
+    }
+    .silver{
+        background-color: $silver;
+    }
+    .gold{
+        background-color: $gold;
+    }
+    .platinum{
+        background-color: #00B8D9;
+    }
+    .diamond{
+        background-color: $diamond;
+    }
+    .reset{
+        background-color: #DBEBD9;
+    }
+}
+.menu_item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7.5px 0;
+    gap: 10px;
+    font-size: .875rem;
+    font-weight: 600;
+    line-height: 1;
+    span{
+        width: 10px;
+        height: 10px;
+    }
+}
+
+
+.skeleton_cntnt{
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+}
