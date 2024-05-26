@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Container } from '@mui/material';
 import Posts from './pages/HomePage/page';
 import PostDetail from './pages/PostDetail/page';
 import Header from './components/header/header';
 import Login from './pages/login/page';
-import { Container } from '@mui/material';
 
 
 function App() {

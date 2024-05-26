@@ -41,6 +41,12 @@ const PostDetail = () => {
     const comments = commentData && [...commentData];
     comments?.splice(index,1);
 
+    if(index === Number(mode.updateId)){
+
+      setMode(() =>({update:false,updateId:""}));
+      setNewComment(() => "");
+    }
+
     setCommentData(() => comments);
 
     setMessageType(() => "info");
