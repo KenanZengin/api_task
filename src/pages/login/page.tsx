@@ -94,17 +94,20 @@ const Login = () => {
                         <span className="l-frgtpss">Parolanızı mı unuttunuz?</span>
                     </div>
                     <div className="inp_w">
-                        <input 
-                            type={passwordState ? "password" : "text"} 
-                            id="password" 
-                            className={`${errors.password ? "err-inp" : "sccs-inp"}`}
-                            placeholder="Enter your password..." 
-                            {...register("password")}
-                            disabled={loading}
-                        />
-                        <span onClick={() => setPasswordState(() => !passwordState)}>
-                            {passwordState ?  <FaRegEyeSlash size={25} /> : <IoEye size={25} />}
-                        </span>
+                        <div className="p_inp_wrpp">
+                            <input 
+                                type={passwordState ? "password" : "text"} 
+                                id="password" 
+                                className={`${errors.password ? "err-inp" : "sccs-inp"}`}
+                                placeholder="Enter your password..." 
+                                {...register("password")}
+                                disabled={loading}
+                            />
+                            <span onClick={() => setPasswordState(() => !passwordState)}>
+                                {passwordState ?  <FaRegEyeSlash size={25} /> : <IoEye size={25} />}
+                            </span>
+                        </div>
+                       
                         {errors.password?.message && <p className="frm-err-msg">{errors.password.message}</p>}
                     </div>
                 </label>

@@ -159,10 +159,10 @@ const Home = () => {
         ?  <TableContainer>
             <Table>
               <TableHead>
-                <TableRow>
+                <TableRow className="t_hd" >
                   <TableCell> Statüs </TableCell>
                   <TableCell> İçerik ID </TableCell>
-                  <TableCell width={300}>Başlık</TableCell>
+                  <TableCell width={300} className="post_ttle">Başlık</TableCell>
                   <TableCell width={400}>İçerik</TableCell>
                 </TableRow>
               </TableHead>
@@ -171,12 +171,12 @@ const Home = () => {
                   const statu = selectStatus(item.id);
                   return(
                       <TableRow key={item.id} className='tbl_rw' user-statu={statu}>
-                          <TableCell  className="user_statu"> 
-                            <span></span> 
-                          </TableCell>
-                          <TableCell padding="none"> <Link to={`/post/${item.id}`}>{item.id}</Link></TableCell>
-                          <TableCell padding="none" width={350}><Link to={`/post/${item.id}`}> {item.title}</Link> </TableCell >
-                          <TableCell padding="none" width={450}> <Link to={`/post/${item.id}`}>{item.body}</Link> </TableCell>
+                        <TableCell  className="user_statu"> 
+                          <span></span> 
+                        </TableCell>
+                        <TableCell padding="none"> <Link to={`/post/${item.id}`}>{item.id}</Link></TableCell>
+                        <TableCell padding="none" width={350} className="post_ttle"><Link to={`/post/${item.id}`}> {item.title}</Link> </TableCell >
+                        <TableCell padding="none" width={450}> <Link to={`/post/${item.id}`}>{item.body}</Link> </TableCell>
                       </TableRow>
                   )
                 })}
@@ -184,7 +184,7 @@ const Home = () => {
             </Table>  
           </TableContainer>      
 
-        : <Grid container rowGap={5} columnGap={2} marginY={10}  alignItems="stretch" justifyContent={"space-between"}>
+        : <Grid container rowGap={5} columnGap={2} marginY={10}  alignItems="stretch"  className="grd_jst_cnt">
           {postData?.map((item)=>{
             const statu = selectStatus(item.id);
             return(
@@ -215,7 +215,7 @@ const Home = () => {
               </Grid>
             )
           })}
-         </Grid>
+          </Grid>
       }
       {isLoading && Array(50).fill(undefined).map((_,i:number)=>(
           <div className="skeleton_cntnt"  key={i}>

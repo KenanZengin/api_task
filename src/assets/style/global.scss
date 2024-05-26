@@ -19,6 +19,9 @@ html{
         &_left{
             img{
                 width: 200px;
+                @media only screen and (max-width: 768px) {
+                    width: 120px;
+                }
             }
         }
         &_right{
@@ -69,8 +72,20 @@ html{
                 align-items: flex-start;
                 gap: 7.5px;
                 .inp_w{
-                    position: relative;
                     width: 100%;
+                    .p_inp_wrpp{
+                        position: relative;
+                        span{
+                            display: inline-block;
+                            height: 25px;
+                            width: 25px;
+                            color: #a6b0c3; 
+                            position: absolute;
+                            right: 10px;
+                            top: calc(50% - 12.5px);
+                            cursor: pointer;
+                        }
+                    }
                     input{
                         padding:0 18px;
                         height: 56px;
@@ -94,16 +109,8 @@ html{
                     input[autocomplete="on"] {
                         background-color: #fff;
                     }
-                    > span{
-                        display: inline-block;
-                        height: 25px;
-                        width: 25px;
-                        color: #a6b0c3;
-                        position: absolute;
-                        right: 10px;
-                        top: calc(50% - 12.5px);
-                        cursor: pointer;
-                    }
+                   
+                   
                 }
                 .l-sp{
                     width: 100%;
@@ -201,6 +208,11 @@ html{
         justify-content: space-between;
         align-items: center;
         padding: 10px 0;
+        @media only screen and (max-width: 768px) {   
+            align-items: flex-start;
+            gap: 12.5px;
+            flex-direction: row-reverse;
+        }
         .list_type,.option_list{
             display: flex;
             align-items: center;
@@ -215,12 +227,25 @@ html{
         }
         .option_list{
             gap: 12.5px;
+             @media only screen and (max-width: 768px) {   
+                flex-wrap: wrap-reverse;
+            }
             .search_post{
+                @media only screen and (max-width: 768px) {
+                    width: 100%;
+                    max-width: 100%;
+                    flex-wrap: wrap;
+                    flex-direction: column;
+                }
                 label{
                     display: block;
                     width: 350px;
                     max-width: 350px;
                     position: relative;
+                    @media only screen and (max-width: 500px) {   
+                        width: 100%;
+                        max-width: 100%;
+                    }
                     input{
                         width: 100%;
                         padding: 12.5px 40px;
@@ -289,6 +314,7 @@ html{
                 background-color: #3C6937;
             }
         }
+       
     }
     .tbl_rw,.member_stt{
         span{
@@ -434,6 +460,20 @@ html{
         font-weight: 600;
         > p{
             margin-top: 7.5px;
+        }
+    }
+    .t_hd{
+        white-space: nowrap;
+    }
+    .post_ttle{
+        @media only screen and (max-width: 576px) {   
+           display: none!important;
+        }
+    }
+    .grd_jst_cnt{
+        justify-content: space-between;
+        @media only screen and (max-width: 576px) {   
+            justify-content: center;
         }
     }
 }
