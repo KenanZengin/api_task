@@ -10,7 +10,7 @@ const Header = () => {
     localStorage.removeItem("fake_token");
     navigate("/login");
 
-  }
+  };
 
   return (
     <header className='header'>
@@ -24,7 +24,7 @@ const Header = () => {
           <Link to={"/"}>
             Ana Sayfa
           </Link>
-          {localStorage.getItem("fake_token") &&(
+          {localStorage.getItem("fake_token") && (
              <div className="logout" onClick={logout}>
                 Log Out
             </div>

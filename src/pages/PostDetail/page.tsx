@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import useSWR from 'swr';
+import { Alert, AlertColor, Skeleton, Snackbar, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import { PostDetailType, UpdateMode } from '../../types';
 import { selectStatus } from '../HomePage/page';
-import { Alert, AlertColor, Skeleton, Snackbar, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import { RxUpdate } from "react-icons/rx";
 import { MdDeleteOutline } from "react-icons/md";
 import { IoIosAdd } from "react-icons/io";
@@ -12,11 +12,12 @@ import { ImCancelCircle } from "react-icons/im";
 
 const PostDetail = () => {
 
-  const navigate = useNavigate();
 
   const { id } = useParams();
   const { data, isLoading } = useSWR(`https://jsonplaceholder.typicode.com/posts/${id}/comments`);
   const statu = selectStatus(Number(id));
+
+  const navigate = useNavigate();
 
   const [commentData,setCommentData] = useState<undefined | PostDetailType[]>(undefined);
   const [newComment,setNewComment] = useState<string>("");
@@ -32,7 +33,7 @@ const PostDetail = () => {
     if(!localStorage.getItem("fake_token")){
       navigate('/login');
     }
-  },[data,navigate])
+  },[data,navigate]);
 
 
   const deleteComment = (index:number) => {
@@ -46,7 +47,7 @@ const PostDetail = () => {
     setFormMessage(() => "Yorumunuz silindi");
     setOpen(() => true);
 
-  }
+  };
 
   const addComment = () => {
    
@@ -60,18 +61,19 @@ const PostDetail = () => {
     }else if(commentData && newComment){
       comment = {
         postId: Number(id),
-        id: commentData && commentData[commentData.length - 1].id  + 1,
+        id: (commentData[commentData.length - 1]?.id || commentData.length)  + 1,
         name: "",
         email: "",
         body: newComment
-      }
-      setCommentData(() => [...commentData,comment])
+      };
+      setCommentData(() => [...commentData,comment]);
+      setNewComment(() => "");
       setMessageType(() => "success");
       setFormMessage(() => "Yorumunuz başarıyla eklendi");
       setOpen(() => true);
     }
 
-  }
+  };
 
   const updateComment = (index:number) => {
     
@@ -97,12 +99,13 @@ const PostDetail = () => {
     setMessageType(() => "info");
     setFormMessage(() => "Yorumunuz başarıyla güncellendi");
     setOpen(() => true);
-  }
+  };
 
   const handleClose = (event: React.SyntheticEvent | Event, reason?: string) =>{
 
     if (reason === 'clickaway') return;
     setOpen(false);
+
   };
 
 
@@ -131,7 +134,8 @@ const PostDetail = () => {
         </div>
       </div>
 
-      <TableContainer>
+      {commentData?.length !== 0
+        ? <TableContainer>
             <Table>
               <TableHead>
                 <TableRow>
@@ -143,7 +147,7 @@ const PostDetail = () => {
               <TableBody>
                 {commentData && commentData?.map((item,index)=>{
                   return(
-                      <TableRow key={item.id} className='tbl_rw' user-statu={statu}>
+                      <TableRow key={index} className='tbl_rw' user-statu={statu}>
                           <TableCell width={150}  className="user_statu"> 
                             {item.id}
                           </TableCell>
@@ -157,7 +161,8 @@ const PostDetail = () => {
                 })}
               </TableBody>
             </Table>  
-      </TableContainer>    
+          </TableContainer>    
+        : <div className='no_record'>Kayıtlı yorum bulunamadı</div>}
 
       {isLoading && Array(10).fill(undefined).map((_,i:number)=>(
           <div className="skeleton_cntnt" key={i}>
@@ -168,14 +173,14 @@ const PostDetail = () => {
       ))}  
 
       <Snackbar open={open} autoHideDuration={4000} onClose={handleClose} anchorOrigin={{vertical:"top",horizontal:"center"}}>
-            <Alert
-                onClose={handleClose}
-                severity={messageType}
-                variant="filled"
-                sx={{ width: '100%' }}
-            >
-                {formMessage}
-            </Alert>
+        <Alert
+          onClose={handleClose}
+          severity={messageType}
+          variant="filled"
+          sx={{ width: '100%' }}
+        >
+          {formMessage}
+        </Alert>
       </Snackbar>
 
     </main>

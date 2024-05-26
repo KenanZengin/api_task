@@ -1,30 +1,29 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
-import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react"
+import { useNavigate } from "react-router"
+import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Alert, AlertColor, Snackbar, CircularProgress } from "@mui/material";
-import { login } from "../../actions/login";
-import { LoginSchema } from "../../schema";
-import { LoginReturnType } from "../../types";
-import { FcGoogle } from "react-icons/fc";
-import { FaRegEyeSlash } from "react-icons/fa";
-import { IoEye } from "react-icons/io5";
+import { Alert, AlertColor, Snackbar, CircularProgress } from "@mui/material"
+import { login } from "../../actions/login"
+import { LoginSchema } from "../../schema"
+import { LoginReturnType } from "../../types"
+import { FcGoogle } from "react-icons/fc"
+import { FaRegEyeSlash } from "react-icons/fa"
+import { IoEye } from "react-icons/io5"
 
 const Login = () => {
 
     const navigate = useNavigate();
 
-    const [passwordState, setPasswordState] = useState<boolean>(true)
+    const [passwordState, setPasswordState] = useState<boolean>(true);
     const [formMessage,setFormMessage] = useState<null | string>();
     const [open, setOpen] = useState<boolean>(false);
     const [messageType, setMessageType] = useState<AlertColor | undefined>(undefined);
     const [loading, setLoading] = useState<boolean>(false);
 
-
     useEffect(()=>{
         if(localStorage.getItem("fake_token")){
-            navigate("/")
+            navigate("/");
         }
     },[navigate])
 
@@ -35,7 +34,6 @@ const Login = () => {
             password: ""
         }
     });
-
 
     const onSubmit = (values: z.infer<typeof LoginSchema>) => {
 
@@ -50,10 +48,9 @@ const Login = () => {
                 setLoading(() => true);
                 setTimeout(()=>{
                     navigate("/");
-                },2500);
-                // navigate(window.location.pathname);
+                },1500);
 
-               localStorage.setItem("fake_token","123456")
+               localStorage.setItem("fake_token","123456");
             }
         });
 

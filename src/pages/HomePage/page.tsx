@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import useSWR from 'swr';
-import { PostType } from '../../types';
-import { Card, CardContent, Grid, Menu, MenuItem, Skeleton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
-import { BiGridAlt } from "react-icons/bi";
-import { PiSlidersHorizontal } from "react-icons/pi";
-import { IoGrid } from "react-icons/io5";
-import { LuList } from "react-icons/lu";
-import { IoSearchOutline } from "react-icons/io5";
+import useSWR from 'swr'
+import { Card, CardContent, Grid, Menu, MenuItem, Skeleton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import { PostType } from '../../types'
+import { BiGridAlt } from "react-icons/bi"
+import { PiSlidersHorizontal } from "react-icons/pi"
+import { IoGrid } from "react-icons/io5"
+import { LuList } from "react-icons/lu"
+import { IoSearchOutline } from "react-icons/io5"
 
 
 const Home = () => {
@@ -32,8 +32,6 @@ const Home = () => {
     
   },[data,navigate])
 
-
-
   const filterMode = (mode:string, search?:string, noSearch?:string):PostType[] => {
 
     setAnchorEl(() => null);
@@ -56,6 +54,7 @@ const Home = () => {
     if(searchLetter && (noSearch !== "nofound")){
       filtered = filtered?.filter(item => item.title.toLowerCase().includes(searchLetter.toLowerCase()) || item.body.toLowerCase().includes(searchLetter.toLocaleLowerCase()));
     }
+
     setPostData(() => filtered);
     setSelectedMode(() => mode);
 
@@ -65,19 +64,16 @@ const Home = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
     setSearchTerm(() => e.target.value.trim());
-    console.log(typeof e.target.value);
     
     let filtered:PostType[] = filterMode(selectedMode,e.target.value.trim());
-    console.log(filtered);
     
     if((filtered.length === 0 && e.target.value.length === 0) || e.target.value.length === 0){
-      console.log("COME??");
       filtered = filterMode(selectedMode,e.target.value.trim(), "nofound");
     }
 
     setPostData(() => filtered);
     
-  }
+  };
 
   return (
     <main className="home_page">
@@ -91,13 +87,17 @@ const Home = () => {
           <div className="search_post">
             <label htmlFor="search">
               <IoSearchOutline size={20} />
-              <input type="text" id='search' placeholder='Search Posts...' value={searchTerm} onChange={handleChange} />
+              <input 
+                type="text" 
+                id='search' 
+                placeholder='Search Posts...' 
+                value={searchTerm}
+                onChange={handleChange} 
+              />
             </label>
           </div>
           <div className='filters'>
-            <button
-              onClick={(event: React.MouseEvent<HTMLButtonElement>) =>{setAnchorEl(event.currentTarget);}}
-            >
+            <button onClick={(event: React.MouseEvent<HTMLButtonElement>) =>{setAnchorEl(event.currentTarget)}}>
               <PiSlidersHorizontal size={20} />
               Filters
             </button>
@@ -155,67 +155,68 @@ const Home = () => {
         </div>
       </div>
     
-      { listMode  
-        ?  <TableContainer>
-            <Table>
-              <TableHead>
-                <TableRow className="t_hd" >
-                  <TableCell> Statüs </TableCell>
-                  <TableCell> İçerik ID </TableCell>
-                  <TableCell width={300} className="post_ttle">Başlık</TableCell>
-                  <TableCell width={400}>İçerik</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {postData?.map((item)=>{
-                  const statu = selectStatus(item.id);
-                  return(
-                      <TableRow key={item.id} className='tbl_rw' user-statu={statu}>
-                        <TableCell  className="user_statu"> 
-                          <span></span> 
-                        </TableCell>
-                        <TableCell padding="none"> <Link to={`/post/${item.id}`}>{item.id}</Link></TableCell>
-                        <TableCell padding="none" width={350} className="post_ttle"><Link to={`/post/${item.id}`}> {item.title}</Link> </TableCell >
-                        <TableCell padding="none" width={450}> <Link to={`/post/${item.id}`}>{item.body}</Link> </TableCell>
-                      </TableRow>
-                  )
-                })}
-              </TableBody>
-            </Table>  
-          </TableContainer>      
-
-        : <Grid container rowGap={5} columnGap={2} marginY={10}  alignItems="stretch"  className="grd_jst_cnt">
-          {postData?.map((item)=>{
-            const statu = selectStatus(item.id);
-            return(
-              <Grid  item  width={250} >
-                <Link to={`/post/${item.id}`}>
-                <Card className="card" >
-                  <CardContent sx={{ flexGrow: 1 }} className='card_content' user-statu={statu}>
-                    <div className="post_info">
-                      <div className="post_membership">
-                        Üyelik modu:
-                        <span></span>
+      {postData?.length !== 0 
+        ? listMode  
+          ?  <TableContainer>
+              <Table>
+                <TableHead>
+                  <TableRow className="t_hd" >
+                    <TableCell> Statüs </TableCell>
+                    <TableCell> İçerik ID </TableCell>
+                    <TableCell width={300} className="post_ttle">Başlık</TableCell>
+                    <TableCell width={400}>İçerik</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {postData?.map((item,index)=>{
+                    const statu = selectStatus(item.id);
+                    return(
+                        <TableRow key={item.id} className='tbl_rw' user-statu={statu}>
+                          <TableCell  className="user_statu"> 
+                            <span></span> 
+                          </TableCell>
+                          <TableCell padding="none"> <Link to={`/post/${item.id}`}>{item.id}</Link></TableCell>
+                          <TableCell padding="none" width={350} className="post_ttle"><Link to={`/post/${item.id}`}> {item.title}</Link> </TableCell >
+                          <TableCell padding="none" width={450}> <Link to={`/post/${item.id}`}>{item.body}</Link> </TableCell>
+                        </TableRow>
+                    )
+                  })}
+                </TableBody>
+              </Table>  
+            </TableContainer>      
+          : <Grid container rowGap={5} columnGap={2} marginY={10}  alignItems="stretch"  className="grd_jst_cnt">
+            {postData?.map((item)=>{
+              const statu = selectStatus(item.id);
+              return(
+                <Grid  key={item.id} item  width={250} >
+                  <Link to={`/post/${item.id}`}>
+                  <Card className="card" >
+                    <CardContent sx={{ flexGrow: 1 }} className='card_content' user-statu={statu}>
+                      <div className="post_info">
+                        <div className="post_membership">
+                          Üyelik modu:
+                          <span></span>
+                        </div>
+                        <div className="post_content">
+                          <p>
+                            İçerik ID : {item.id}
+                          </p>
+                          <p>
+                            Başlık: {item.title}
+                          </p>
+                          <p>
+                            İçerik: {item.body}
+                          </p>
+                        </div>
                       </div>
-                      <div className="post_content">
-                        <p>
-                          İçerik ID : {item.id}
-                        </p>
-                        <p>
-                          Başlık: {item.title}
-                        </p>
-                        <p>
-                          İçerik: {item.body}
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-                </Link>
-              </Grid>
-            )
-          })}
-          </Grid>
+                    </CardContent>
+                  </Card>
+                  </Link>
+                </Grid>
+              )
+            })}
+            </Grid>
+        : <div className='no_record'>Kayıtlı post bulunamadı</div>
       }
       {isLoading && Array(50).fill(undefined).map((_,i:number)=>(
           <div className="skeleton_cntnt"  key={i}>
@@ -249,4 +250,4 @@ export  const selectStatus = (id: number) => {
   }
   return "no status"
 
-}
+};
