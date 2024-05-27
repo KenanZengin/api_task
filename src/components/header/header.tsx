@@ -20,16 +20,16 @@ const Header = () => {
             <img src={Logo} alt="logo"/>
           </div>
         </div>
-        <div className="header_web_right">
-          <Link to={"/"}>
-            Ana Sayfa
-          </Link>
-          {localStorage.getItem("fake_token") && (
-             <div className="logout" onClick={logout}>
-                Log Out
+        {localStorage.getItem("fake_token") && (
+          <div className="header_web_right">
+              <Link to={"/"}>
+                Ana Sayfa
+              </Link>
+              <div className="logout" onClick={logout}>
+                  Log Out
+              </div>
             </div>
           )}
-        </div>
       </div>
     </header>
   )

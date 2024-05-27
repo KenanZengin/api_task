@@ -146,10 +146,10 @@ const Home = () => {
           </div>
           <div className="list_mode">
             <div className={`list_t ${listMode === true ? "tbl_list" : " nt_list"}`} onClick={() => setListMode(true)}>
-              <IoGrid size={22} />
+            <LuList size={22} />
             </div>
             <div className={`list_t ${listMode === false ? "tbl_list" : " nt_list"}`} onClick={() => setListMode(false)}>
-              <LuList size={22} />
+              <IoGrid size={22} />
             </div>
           </div>
         </div>
